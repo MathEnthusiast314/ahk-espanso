@@ -28,25 +28,6 @@ matches:
     replace: "‚"
   - trigger: ":ex"
     replace: "Example:"
-
-   #desmos stuff
-  # https://stackoverflow.com/questions/3746725/how-to-create-an-array-containing-1-n#:~:text=want%20a%20function%3F
-  - trigger: ":range"
-    replace: "function range(a,b,c){c=[];while(a--)c[a]=a+b;return c};  range($|$,)"
-  - trigger: ":ddel"
-    replace: "(function () { /* put the list of stuff you want to delete in the array (1-based Demos indices)*/ let remList = [$|$].map( elem => elem - 1 ); let exprs = Calc.getExpressions(); let remQueue = []; remList.forEach((item) => { remQueue.push(exprs[item]); }); Calc.removeExpressions(remQueue); })();"
-  # properties: secret,color
-  - trigger: ":dpro"
-    replace: "(function () { /* put the list of stuff you want to hide or color in the array (1-based Demos indices)*/ let state = Calc.getState(); let remList = [].map( elem => elem - 1 ); let exprs = Calc.getExpressions(); let remQueue = []; remList.forEach((item) => { if (!exprs[item].hasOwnProperty('folderId')) { state.expressions.list[item].secret = true; }  }); Calc.setState(state, {allowUndo: true}); })();"
-  - trigger: ":dss"
-    replace: "state = Calc.getState(); Calc.screenshot({width: $|$, height: #})"
-  - trigger: ":dlayer"
-    replace: 'state=Calc.getState(); state.expressions.list.push({"type":"image","id":"43074","image_url":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2P4////fwAJ+wP9BUNFygAAAABJRU5ErkJggg==","name":"Seamless dragging, courtesy of @ayunami2000!!!","foreground":true,"center":"C_{4}","width":"10^{5}","height":"10^{5}","opacity":"0","draggable":true}); Calc.setState(state, {allowUndo: true});'
-  - trigger: ":dhistory"
-    replace: "(function () {const start = '{{clipboard}}';(async () => {let cur = start;while (true) {console.log(`https://www.desmos.com/calculator/${cur}`);const html = await (await fetch(`https://www.desmos.com/calculator/${cur}`)).text();const matches = html.match(/quot;parent_hash&quot;:&quot;([a-z0-9]{10,20})&quot;/);if (!matches) break;cur = matches[1];}})();})();\n"
-    vars:
-      - name: "clipboard"
-        type: "clipboard"
         
   # Shell commands
   - trigger: ":shell"
